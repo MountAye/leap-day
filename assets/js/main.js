@@ -1,6 +1,6 @@
-var sectionHeight = function() {
+var mainHeight = function() {
   var total    = $(window).height(),
-      $section = $('section').css('height','auto');
+      $section = $('#main').css('height','auto');
 
   if ($section.outerHeight(true) < total) {
     var margin = $section.outerHeight(true) - $section.height();
@@ -10,10 +10,10 @@ var sectionHeight = function() {
   }
 }
 
-$(window).resize(sectionHeight);
+$(window).resize(mainHeight);
 
 $(function() {
-  $("section h1, section h2, section h3").each(function(){
+  $("#main h1, #main h2, #main h3").each(function(){
     $("nav ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g,'') + "'>" + $(this).text() + "</a></li>");
     $(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g,''));
     $("nav ul li:first-child a").parent().addClass("active");
@@ -27,7 +27,7 @@ $(function() {
     event.preventDefault();
   });
 
-  sectionHeight();
+  mainHeight();
 
-  $('img').on('load', sectionHeight);
+  $('img').on('load', mainHeight);
 });
